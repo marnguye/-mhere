@@ -1,5 +1,5 @@
-import detectPlatform from '@/FE/utils/detectPlatform';
-import { triggerShortcut } from '@/FE/utils/handleShortcut';
+import detectPlatform from '@utils/detectPlatform';
+import { triggerShortcut } from '@utils/handleShortcut';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useRef, useState } from 'react';

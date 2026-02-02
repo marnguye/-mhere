@@ -29,20 +29,11 @@
     "noUncheckedSideEffectImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@fe/*": [
-        "src/FE/*"
-      ],
-      "@be/*": [
-        "src/BE/*"
-      ],
-      "@components/*": [
-        "src/FE/components/*"
-      ]
-    }
-  },
+      "@/*": ["src/*"],
+      "@fe/*": ["src/FE/*"],
+      "@components/*": ["src/FE/components/*"],
+      "@utils/*": ["src/FE/utils/*"]
+    }  },
   "include": [
     "src"
   ]
