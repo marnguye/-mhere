@@ -1,6 +1,8 @@
+import detectPlatform from '@/FE/utils/detectPlatform';
+import { triggerShortcut } from '@/FE/utils/handleShortcut';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 type CountryData = {
   id: string
@@ -15,6 +17,9 @@ type SearchCountryProps = {
 
 export default function SearchCountry({ onSelect }: SearchCountryProps) {
   const [options, setOptions] = useState<CountryData[]>([]);
+  const ref = useRef<HTMLInputElement>(null);
+
+  triggerShortcut(() => ref.current?.focus());
 
   const search = async (q: string) => {
     if (!q) return;
@@ -26,6 +31,16 @@ export default function SearchCountry({ onSelect }: SearchCountryProps) {
     setOptions(data.features);
   }
 
+  const platform = detectPlatform();
+
+  const placeholder: Record<string, string> = {
+    mac: "⌘ + /",
+    windows: "CTRL + /",
+    linux: "SUPER + /",
+    mobile: "Search for a place",
+    other: "Search for a place",
+  }
+
   return (
     <Autocomplete
       options={options}
@@ -33,11 +48,17 @@ export default function SearchCountry({ onSelect }: SearchCountryProps) {
       onInputChange={(_, val) => search(val)}
       onChange={(_, val) => val && onSelect(val)}
       renderInput={(param) => (
-        <TextField {...param} label="Search for a place" size='small' />
+        <TextField
+          {...param}
+          inputRef={ref}
+          placeholder={placeholder[platform]}
+          size='small'
+        />
       )}
       sx={{
         width: 1, p: 2,
-        "& .MuiInputBase-root": { borderRadius: "10px", bgcolor: "#71797E" }
+        "& .MuiInputBase-root": { borderRadius: "11px", bgcolor: "#71797E" },
+        "& .MuiIconButton-root": { display: "none" }
       }}
     />
   )

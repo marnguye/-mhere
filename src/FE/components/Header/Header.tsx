@@ -2,7 +2,7 @@ import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Search from "./Search";
-import ActiveUsers from "../Body/components/Active/ActiveUsers";
+import ActiveUsers from "@components/Body/components/Active/ActiveUsers";
 
 type HeaderProps = {
   onCountrySelect: (country: any) => void;
