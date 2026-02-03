@@ -7,7 +7,7 @@ type BodyProps = {
 
 export default function Body({ mapRef }: BodyProps) {
   return (
-    <Grid className="body_container w-full h-full" flex={1}>
+    <Grid className="body_container" sx={{ flex: 1, width: "100vw", height: "100vh" }}>
       <Map mapRef={mapRef} />
     </Grid>
   )

@@ -6,7 +6,8 @@ export default function ActiveUsers() {
   const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3001");
+    const wsUrl = import.meta.env.VITE_WS_URL || "ws://localhost:3001";
+    const ws = new WebSocket(wsUrl);
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
